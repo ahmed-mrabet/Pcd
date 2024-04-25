@@ -1,0 +1,49 @@
+.DoctorBox{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: ridge rgb(136, 42, 42);
+    border-radius: 5px;
+}
+.SmallerBox{
+    padding: 2%;
+}
+.box1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    }
+.inputs{ 
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.Field{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.inputs label {
+    width: 50%;
+}
+.btx_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btx{
+    width: 20%;    
+    border: thin black;
+    border-radius:5px  ;
+}
+.btx:hover{
+    opacity: 0.8;
+    background-color: rgb(187, 219, 215);
+}

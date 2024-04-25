@@ -1,0 +1,17 @@
+.BigBox{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+}
+.btxout{
+    width: 20%;    
+    border: thin black;
+    border-radius:5px  ;
+}
+.btxout:hover{
+    opacity: 0.8;
+    background-color: rgb(219, 187, 187);
+}
