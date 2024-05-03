@@ -1,0 +1,22 @@
+.Inputs{
+    width: 100%;
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 0.1%;
+}
+.Field{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+.Form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

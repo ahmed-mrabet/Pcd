@@ -15,3 +15,40 @@
     opacity: 0.8;
     background-color: rgb(219, 187, 187);
 }
+.Header{
+    
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5% ;
+}
+.Header li{ 
+    
+    background-color: rgb(220, 245, 240);
+     border-radius: 5px;
+    border:ridge black ;
+    padding: 1%;
+}
+.Header li a{
+    text-decoration: none;
+    color: black;
+}
+.Header  :hover{
+    background-color: rgb(189, 245, 234);
+}
+.Title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
+
+
+}
+.Container{
+    
+    width: 100%;
+}

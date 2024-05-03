@@ -11,19 +11,26 @@ contract InsuranceContract {
     // Instance of the Prescription Contract
     PrescriptionContract prescriptionContract;
 
+    // Function to get all prescriptions
+    function getAllPrescriptions() public view returns (PrescriptionContract.Prescription[] memory) {
+        return prescriptionContract.getAllPrescriptions();
+    }
+
+
     // Constructor to set the address of the Prescription Contract
     constructor(address _prescriptionContractAddress) {
         prescriptionContractAddress = _prescriptionContractAddress;
         prescriptionContract = PrescriptionContract(_prescriptionContractAddress);
     }
 
-    // Function to verify prescription payment status
-    function verifyPrescriptionPayment(uint _prescriptionId) public view returns (bool) {
-        return prescriptionContract.getPrescriptionPaidStatus(_prescriptionId);
-    }
-
     // Function to mark prescription as reimbursed
     function markPrescriptionReimbursed(uint _prescriptionId) public {
+        PrescriptionContract.Prescription memory prescription = prescriptionContract.getPrescription(_prescriptionId);
+        require(keccak256(abi.encodePacked(prescription.patientUsername)) == keccak256(abi.encodePacked(msg.sender)), "Unauthorized");
         prescriptionContract.markPrescriptionReimbursed(_prescriptionId);
     }
+
 }
+
+
+

@@ -12,7 +12,8 @@ contract PatientContract {
         prescriptionContract = PrescriptionContract(_prescriptionContractAddress);
     }
 
-    function getPrescription(uint _prescriptionId) public view returns (PrescriptionContract.Prescription memory) {
-        return prescriptionContract.getPrescription(_prescriptionId);
+    // Function to get all prescriptions associated with a patient
+    function getPrescriptionsByPatient(string memory _patientUsername) public view returns (PrescriptionContract.Prescription[] memory) {
+        return prescriptionContract.getAllPrescriptionsForPatient(_patientUsername);
     }
 }

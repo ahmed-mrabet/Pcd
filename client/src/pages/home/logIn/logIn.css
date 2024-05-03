@@ -47,3 +47,10 @@
     opacity: 0.8;
     background-color: rgb(204, 219, 187);
 }
+.logInbtx{display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap:wrap;
+  column-gap: 1%;
+
+}

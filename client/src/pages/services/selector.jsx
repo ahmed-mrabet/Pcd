@@ -184,7 +184,7 @@ function PrescriptionSelector({ userRole, userAddress }) {
   
 
 
-  const excludedKeys = ['0', '1', '2', '3', '4', '5', '6', '__length__'];
+  const excludedKeys = ['0', '1', '2', '3', '4', '5', '6', '__length__','isDeleted'];
 
   return (
     <div>

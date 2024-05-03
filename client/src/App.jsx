@@ -1,72 +1,106 @@
-import { useState, useEffect } from 'react';
-import Docotr from './pages/services/doctor/Doctor';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'; // Import useNavigate
+import Doctor from './pages/services/doctor/Doctor';
 import LoginPage from './pages/home/logIn/logIn';
 import Pharmacist from "./pages/services/pharmacist/pharmacist";
-import Patient from"./pages/services/patient/patient"
+import Patient from "./pages/services/patient/patient";
 import Insurance from './pages/services/insurance/insurance';
-import"./App.css"
+import SignUpPage from './pages/home/signUp/signUp';
+import "./App.css";
+
 function App() {
   const [userRole, setUserRole] = useState(null);
-  const [userAddress, setUserAddress] = useState(null);
+  const [userAddress, ] = useState(null);
+  const [token, setToken] = useState(null);
 
-  // On initial load, check if user is logged in from localStorage
   useEffect(() => {
+    const token = localStorage.getItem('Token');
     const storedUserRole = localStorage.getItem('userRole');
-    const storedUserAddress = localStorage.getItem('userAddress');
-    if (storedUserRole && storedUserAddress) {
+    if (storedUserRole && token) {
       setUserRole(storedUserRole);
-      setUserAddress(storedUserAddress);
+      setToken(token);
     }
   }, []);
 
-  const handleLogin = (role, address) => {
+  const handleLogin = (role, token) => {
     setUserRole(role);
-    setUserAddress(address);
-    // Store the logged-in user role and address in localStorage
-    localStorage.setItem('userRole', role);
-    localStorage.setItem('userAddress', address);
+    setToken(token);
+    console.log('connected', "token", token, "   role    :", role);
   };
 
   const handleLogout = () => {
     setUserRole(null);
-    setUserAddress(null);
-    // Clear the logged-in user role and address from localStorage
+    (null);
     localStorage.removeItem('userRole');
-    localStorage.removeItem('userAddress');
+    localStorage.removeItem('token');
+    window.location.href = "/";
   };
 
   return (
-    <div className='BigBox'>
-      <h1>Prescription Management System</h1>
-      
-          {userRole === 'pharmacist' ? (
-            <>
-              <h2>Welcome, {userRole}!</h2>
-              <button className ="btxout"onClick={handleLogout}>Logout</button>
-              <Pharmacist userRole={userRole} userAddress={userAddress} />  
-            </>
-          ) : userRole === 'doctor' ? (
-            <>
-              <h2>Welcome, {userRole}!</h2>
-              <button className='btxout'onClick={handleLogout}>Logout</button>
-              <Docotr userRole={userRole} userAddress={userAddress} />
-            </>          
-          ) : userRole === 'patient' ? (
-            <>
-              <h2>Welcome, {userRole}!</h2>
-              <button onClick={handleLogout}>Logout</button>
-              <Patient userRole={userRole} userAddress={userAddress} />
-            </>
-          ) : userRole === 'insurance' ? (
-            <>
-              <h2>Welcome, {userRole}!</h2>
-              <button onClick={handleLogout}>Logout</button>
-              <Insurance userRole={userRole} userAddress={userAddress} />
-            </>
-          )  : (
-        <LoginPage onLogin={handleLogin} />
-      )}
-    </div>
+    <Router>
+      <div className='BigBox'>
+        <h1>Prescription Management System</h1>
+        <div className='Container'>
+          <Routes>
+            {userRole && (
+              <Route path={`/${userRole}`} element={(
+                <>
+                  {userRole === 'pharmacist' && (
+                    <>
+                      <div className='Title'>
+                        <h2>Welcome, {userRole}!</h2>
+                        <button className="btxout" onClick={handleLogout}>Logout</button>
+                      </div>
+                      <Pharmacist userRole={userRole}  />
+                    </>
+                  )}
+                  {userRole === 'doctor' && (
+                    <>
+                      <div className='Title'>
+                        <h2>Welcome, {userRole}!</h2>
+                        <button className='btxout' onClick={handleLogout}>Logout</button>
+                      </div>
+                      <Doctor userRole={userRole}  />
+                    </>
+                  )}
+                  {userRole === 'patient' && (
+                    <>
+                      <div className='Title'>
+                        <h2>Welcome, {userRole}!</h2>
+                        <button onClick={handleLogout}>Logout</button>
+                      </div>
+                      <Patient userRole={userRole}  />
+                    </>
+                  )}
+                  {userRole === 'insurance' && (
+                    <>
+                      <div className='Title'>
+                        <h2>Welcome, {userRole}!</h2>
+                        <button onClick={handleLogout}>Logout</button>
+                      </div>
+                      <Insurance userRole={userRole}  />
+                    </>
+                  )}
+                </>
+              )} />
+            )}
+            {/* If user is logged in, redirect to their role-specific page */}
+            <Route path="/" element={userRole ? <Navigate to={`/${userRole}`} /> : (
+              <div>
+                <div>
+                  <ul className='Header'>
+                    <li><Link to="/">About us</Link></li>
+                    <li><Link to="/signUp">Sign up</Link></li>
+                  </ul>
+                </div>
+                <LoginPage onLogin={handleLogin} />
+              </div>
+            )} />
+            <Route path="/signUp" element={<SignUpPage />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
