@@ -11,6 +11,9 @@ contract PharmacyContract {
     function getAllPrescriptions() public view returns (PrescriptionContract.Prescription[] memory) {
         return prescriptionContract.getAllPrescriptions();
     }
+    function getPrescription(uint _prescriptionId) public view returns (PrescriptionContract.Prescription memory) {
+        return prescriptionContract.getPrescriptionById(_prescriptionId);
+    }
 
     constructor(address _prescriptionContractAddress) {
         prescriptionContractAddress = _prescriptionContractAddress;
@@ -21,9 +24,10 @@ contract PharmacyContract {
 
     function markPrescriptionPaid(uint _prescriptionId) public {
         PrescriptionContract.Prescription memory prescription = prescriptionContract.getPrescription(_prescriptionId);
-        require(keccak256(abi.encodePacked(prescription.patientUsername)) == keccak256(abi.encodePacked(msg.sender)), "Unauthorized");
         prescriptionContract.markPrescriptionPaid(_prescriptionId);
     }
 
-   
+   function getAllPrescriptionsForPatient(string memory _patientUsername) public view returns (PrescriptionContract.Prescription[] memory) {
+        return prescriptionContract.getAllPrescriptionsForPatient(_patientUsername);
+    }
 }

@@ -78,7 +78,6 @@ contract PrescriptionContract {
     // Function to modify an existing prescription
     function modifyPrescription(uint _prescriptionId, string memory _medication, string memory _instructions) public {
         Prescription storage prescription = prescriptions[_prescriptionId];
-        require(keccak256(abi.encodePacked(msg.sender)) == keccak256(abi.encodePacked(prescription.doctorUsername)), "Only the doctor who created the prescription can modify it");
         require(!prescription.isDeleted, "Prescription has been deleted");
         prescription.medication = _medication;
         prescription.instructions = _instructions;
@@ -86,13 +85,14 @@ contract PrescriptionContract {
     }
 
     // Function to delete a prescription
-    function deletePrescription(uint _prescriptionId) public {
-        Prescription storage prescription = prescriptions[_prescriptionId];
-        require(keccak256(abi.encodePacked(msg.sender)) == keccak256(abi.encodePacked(prescription.doctorUsername)), "Only the doctor who created the prescription can delete it");
-        require(!prescription.isDeleted, "Prescription has already been deleted");
-        prescription.isDeleted = true;
-        emit PrescriptionDeleted(_prescriptionId);
-    }
+    function deletePrescription(uint _prescriptionId, string memory _doctorUsername) public {
+    Prescription storage prescription = prescriptions[_prescriptionId];
+    require(keccak256(abi.encodePacked(_doctorUsername)) == keccak256(abi.encodePacked(prescription.doctorUsername)), "Only the doctor who created the prescription can delete it");
+    require(!prescription.isDeleted, "Prescription has already been deleted");
+    prescription.isDeleted = true;
+    emit PrescriptionDeleted(_prescriptionId);
+}
+
 
     // Function to get all prescriptions for a specific patient
     function getAllPrescriptionsForPatient(string memory _patientUsername) public view returns (Prescription[] memory) {
@@ -109,5 +109,26 @@ contract PrescriptionContract {
             mstore(patientPrescriptions, patientPrescriptionCount)
         }
         return patientPrescriptions;
+    }
+    //function to get all prescriptions for a specific doctor
+     function getAllPrescriptionsForDoctor(string memory _doctorUsername) public view returns (Prescription[] memory) {
+        Prescription[] memory patientPrescriptions = new Prescription[](prescriptionCount);
+        uint patientPrescriptionCount = 0;
+        for (uint i = 0; i < prescriptionCount; i++) {
+            if (keccak256(abi.encodePacked(prescriptions[i].doctorUsername)) == keccak256(abi.encodePacked(_doctorUsername))) {
+                patientPrescriptions[patientPrescriptionCount] = prescriptions[i];
+                patientPrescriptionCount++;
+            }
+        }
+        // Trim the array to remove any empty slots
+        assembly {
+            mstore(patientPrescriptions, patientPrescriptionCount)
+        }
+        return patientPrescriptions;
+    }
+
+    function getPrescriptionById(uint _prescriptionId) public view returns (Prescription memory) {
+        require(_prescriptionId < prescriptionCount, "Prescription ID does not exist");
+        return prescriptions[_prescriptionId];
     }
 }

@@ -1,8 +1,47 @@
-.insuranceBox{
+.InsuranceBox{
     width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  background-color: #fff; /* White */
+  border: 2px solid #FFCB05; /* Google Blue */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.insuranceprescriptionlist:hover {
+    background-color: #fff8db;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: black;
+  }
+  .ButtonBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .insuranceprescriptionlist {
+    color: black;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: ridge rgb(136, 42, 42);
+    padding: 2% 0 2% 2%;
     border-radius: 5px;
-}
+    list-style: none;
+    border: ridge black;
+  }
+  .Button{
+    padding: 10px 20px;
+    background-color: #979382; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .Button:hover{
+    opacity: 0.8;
+    background-color: #ffb846;}

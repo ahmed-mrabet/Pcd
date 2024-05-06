@@ -21,8 +21,9 @@ app.post('/SignUp', async (req, res) => {
     const { name, lastname, username, password, role } = req.body;
     try {
         const user = await registerUser(name, lastname, username, password, role);
-        const walletAddress = generateWalletAddress(role);
-        res.status(201).json({ message: 'User registered successfully', user, walletAddress });
+        const walletAddress=generateWalletAddress(role);
+        
+        res.status(201).json({ message: 'User registered successfully', user,role, walletAddress });
     } catch (error) {
         console.error('Error registering user:', error.message);
         res.status(500).json({ message: 'Internal server error' });
@@ -40,8 +41,9 @@ app.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ username: user.username, role: user.role }, 'your_secret_key');
+        const walletAddress = generateWalletAddress(role);
 
-        res.status(200).json({ token, role });
+        res.status(200).json({ token, role,walletAddress });
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).json({ message: 'Internal server error' });

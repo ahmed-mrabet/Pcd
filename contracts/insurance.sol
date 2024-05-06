@@ -16,6 +16,10 @@ contract InsuranceContract {
         return prescriptionContract.getAllPrescriptions();
     }
 
+     function getPrescription(uint _prescriptionId) public view returns (PrescriptionContract.Prescription memory) {
+        return prescriptionContract.getPrescriptionById(_prescriptionId);
+    }
+
 
     // Constructor to set the address of the Prescription Contract
     constructor(address _prescriptionContractAddress) {
@@ -26,8 +30,10 @@ contract InsuranceContract {
     // Function to mark prescription as reimbursed
     function markPrescriptionReimbursed(uint _prescriptionId) public {
         PrescriptionContract.Prescription memory prescription = prescriptionContract.getPrescription(_prescriptionId);
-        require(keccak256(abi.encodePacked(prescription.patientUsername)) == keccak256(abi.encodePacked(msg.sender)), "Unauthorized");
         prescriptionContract.markPrescriptionReimbursed(_prescriptionId);
+    }
+    function getAllPrescriptionsForPatient(string memory _patientUsername) public view returns (PrescriptionContract.Prescription[] memory) {
+        return prescriptionContract.getAllPrescriptionsForPatient(_patientUsername);
     }
 
 }

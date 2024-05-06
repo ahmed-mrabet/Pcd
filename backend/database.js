@@ -14,7 +14,7 @@ export function generateWalletAddress(role) {
             return "0x282d34Df86Bf49AbC52FEff14d0072bEE4EB5115";
         case 'patient':
             return "0x669a9c7e304EB24cfe479B484396D471C4A2EaB8";
-        case 'pharmacist':
+        case 'pharmacy':
             return "0xa14ebb9bBF722f05A42370832600Efc13E4ae238";
         case 'insurance':
             return "0xd4686A9D503Dd44eBf5F3f8e795E705571aaaE55";
@@ -47,7 +47,7 @@ export async function registerUser(name, lastname, username, password, role) {
                     VALUES (?, ?, ?, ?)`, [name, lastname, username, password]);
                 break;
             default:
-                throw new Error('Invalid role specified');
+                throw new Error(' Invalid role specified');
         }
         
     } catch (error) {

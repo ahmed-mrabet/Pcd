@@ -1,49 +1,171 @@
-.DoctorBox{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: ridge rgb(136, 42, 42);
-    border-radius: 5px;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5; /* Light Gray */
+  
 }
-.SmallerBox{
-    padding: 2%;
+
+.DoctorBox {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  background-color: #fff; /* White */
+  border: 2px solid #4285F4; /* Google Blue */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.box1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    }
-.inputs{ 
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+
+h2 {
+  margin-bottom: 20px;
+  
 }
-.Field{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
+
+.SmallerBox {
+  padding: 20px;
+  background-color: #f9f9f9; /* Light Gray */
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
+
+.box1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .inputs label {
-    width: 50%;
+  width: 50%;
+  color: #333;
+  font-weight: bold;
 }
-.btx_container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.inputs input {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ccc; 
+  border-radius: 5px;
 }
-.btx{
-    width: 20%;    
-    border: thin black;
-    border-radius:5px  ;
+
+.btx_container {
+  text-align: center;
 }
-.btx:hover{
-    opacity: 0.8;
-    background-color: rgb(187, 219, 215);
+
+.btx {
+  padding: 10px 20px;
+  background-color: #88322a; /* Accent Teal */
+  color: #fff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btx:hover {
+  background-color: #6c2521; /* Darker Accent Teal */
+}
+
+.SearchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.SearchBar input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+}
+
+.SearchBar button {
+  padding: 10px 20px;
+  background-color: #88322a; /* Accent Teal */
+  color: #fff;  
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.SearchBar button:hover {
+  background-color: #6c2521; /* Darker Accent Teal */
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.prescriptionlist {
+  color: black;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2% 2% 2% 2%;
+  border-radius: 5px;
+  list-style: none;
+  border: ridge black;
+}
+
+.prescriptionlist:hover {
+  background-color: #e3f7fa; /* Teal */
+}
+
+.listContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+.ButtonsBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.ModifyBox {
+  display: flex;
+  align-items: center;
+}
+
+.Modify {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.Modify input {
+  margin-bottom: 10px;
+}
+
+.ButtonsBox button {
+  background-color: #88322a;
+  color: #fff;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ButtonsBox button:hover {
+  background-color: #88322a;
 }

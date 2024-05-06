@@ -1,8 +1,49 @@
-.PatientBox{
+.PatientBox {
+    width: 100%;
+    max-width: 1000px; 
+    margin: 20px auto; 
+    padding: 20px;
+    border: 2px solid #88322a;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .PatientBox h2 {
+    margin-bottom: 20px;
+    color: #88322a;
+  }
+  
+  .PatientBox ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .PatientBox .prescriptionlist {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .PatientBox .prescriptionlist strong {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .PatientBox .prescriptionlist:hover {
+    background-color: #eed3d3;
+  }
+  .Details{
+    padding: 1%;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .DetailsBox{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border: ridge rgb(136, 42, 42);
-    border-radius: 5px;
-}
+    align-items: center;
+  }
