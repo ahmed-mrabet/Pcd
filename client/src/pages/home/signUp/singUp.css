@@ -1,11 +1,26 @@
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; 
+
+  }
+  
+
 .Inputs{
     width: 100%;
     display: flex;
     flex-flow: row-reverse;
     justify-content: space-between;
     align-items: center;
-    column-gap: 0.1%;
+    gap: 0.5rem;
 }
+.Inputs input{width: 20%;}
+
+#role{
+    width: 20.8%;
+
+}
+
 .Field{
     
     display: flex;
@@ -13,10 +28,22 @@
     justify-content: center;
     align-items: center;
     width: 80%;
+    gap: 0.5rem;
 }
 .Form{
     display: flex;
     justify-content: center;
     align-items: center;
     
+}
+.SignUpBox{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added shadow */
+  max-width: 94vw;
+  margin-top: 5%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

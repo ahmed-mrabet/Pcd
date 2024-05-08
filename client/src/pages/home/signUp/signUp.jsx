@@ -38,8 +38,8 @@ function SignUp(onSignUp) {
        const userRole = response.data.role;
 
        localStorage.setItem('userRole', userRole);
-       onSignUp(userRole, token)
-      navigate(`/${userRole}`);
+       onSignUp(userRole, token); 
+       navigate(`/${userRole}`);
 
     } catch (error) {
       console.error('Error registering user:', error);
@@ -48,7 +48,7 @@ function SignUp(onSignUp) {
   };
 
   return (
-    <div>
+    <div className="SignUpBox">
       <form className='Form' onSubmit={handleSubmit}>
         <fieldset className='Field'> 
           <div className='Inputs'>

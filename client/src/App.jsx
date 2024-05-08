@@ -12,6 +12,7 @@ import logo from "./assets/logo.png";
 import PrescriptionDetails from './pages/services/pharmacist/Prescription';
 import  PrescriptionDetails1  from './pages/services/insurance/Prescription';
 import PatientPres from './pages/services/patient/PatientPres';
+import AboutUs from './pages/home/abouUs/aboutUs';
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -47,10 +48,11 @@ function App() {
   
     return (
       <ul className='Header'>
-        {!userRole && <li><Link to="/">About us</Link></li>}
+        {!userRole && <li><Link to="/aboutus">About us</Link></li>}
         {userRole === "doctor" && location.pathname !== "/Create" && <li><Link to="/Create">Create Prescription</Link></li>}
         {userRole === "doctor" && location.pathname !== "/doctor" && <li><Link to="/doctor">Home</Link></li>}
-        {!userRole && <li><Link to="/signUp">Sign up</Link></li>}
+        {!userRole && location.pathname!=="/signUp" && <li><Link to="/signUp">Sign up</Link></li>}
+        {!userRole && location.pathname=="/signUp"&& <li><Link to="/">Login</Link></li>}
         {userRole === "pharmacy" && location.pathname !== "/pharmacy" && <li id="PharmacyLink"><Link  to="/pharmacy">Home</Link></li>}
         {userRole === "patient" && location.pathname !== "/patient" && <li id="PatientLink"><Link to="/patient">Home</Link></li>}
         {userRole === "insurance" && location.pathname !== "/insurance" && <li id="InsuranceLink"><Link to="/insurance">Home</Link></li>}      
@@ -79,7 +81,7 @@ function App() {
         <div className='Container'>
           <Routes>
             <Route path="/" element={userRole ? <Navigate to={`/${userRole}`} /> : <LoginPage onLogin={handleLogin} />} />
-            <Route path="/signUp" element={userRole? <Navigate to ={`/${userRole}`}/> : <SignUpPage onSignUp={handelSignUp} />} />
+            <Route path="/signUp" element={userRole ? <Navigate to ={`/${userRole}`}/> : <SignUpPage onSignUp={handelSignUp} />} />
             <Route path="/doctor" element={<Doctor />} />
             <Route path="/pharmacy" element={<Pharmacist />} />
             <Route path="/patient" element={<Patient />} />
@@ -88,6 +90,7 @@ function App() {
             <Route path='/pharmacy/prescription/:prescriptionId' element={<PrescriptionDetails />} />
             <Route path='/insurance/prescription/:prescriptionId' element={<PrescriptionDetails1 />} />
             <Route path="/Patient/prescription/:prescriptionId" element={<PatientPres/>} />
+            <Route path='/aboutUs' element={<AboutUs/>}/>
 
           </Routes>
         </div>
