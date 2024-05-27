@@ -66,7 +66,7 @@ function LoginPage({ onLogin }) {
               </div>
               <div  className='logInInputs'>
                 <label htmlFor="role">Select your Role:</label>
-                <select required name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)} >
+                <select required name="role" id="roles" value={role} onChange={(e) => setRole(e.target.value)} >
                   <option value="" disabled>Select a role</option> {/* Set the default option */}
                   <option value="doctor">Doctor</option>
                   <option value="patient">Patient</option>

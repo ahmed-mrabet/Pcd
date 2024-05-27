@@ -87,7 +87,6 @@ contract PrescriptionContract {
     // Function to delete a prescription
     function deletePrescription(uint _prescriptionId, string memory _doctorUsername) public {
     Prescription storage prescription = prescriptions[_prescriptionId];
-    require(keccak256(abi.encodePacked(_doctorUsername)) == keccak256(abi.encodePacked(prescription.doctorUsername)), "Only the doctor who created the prescription can delete it");
     require(!prescription.isDeleted, "Prescription has already been deleted");
     prescription.isDeleted = true;
     emit PrescriptionDeleted(_prescriptionId);

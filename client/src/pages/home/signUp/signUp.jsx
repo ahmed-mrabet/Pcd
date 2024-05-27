@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./singUp.css"
 import { useNavigate } from 'react-router-dom';
 
-function SignUp(onSignUp) {
+function SignUp({onSignUp}) {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',

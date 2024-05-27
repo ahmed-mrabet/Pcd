@@ -85,10 +85,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 }
 .logInInputs input{
   width: 50%;
 }
-#role{
-  width: 52%;
+.logInInputs select {
+  width: 52.8%;
+  
+  
 }

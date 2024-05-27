@@ -18,47 +18,48 @@ function PatientPres() {
             const deployedNetwork = Patient.networks[networkId];
             const contract = new web3.eth.Contract(Patient.abi, deployedNetwork.address);
             setState({ web3: web3, contract: contract });
-            const prescription = await contract.methods.getPrescription(prescriptionId).call();         
-            setData(prescription);
             
+            try {
+                const prescription = await contract.methods.getPrescription(prescriptionId).call();         
+                console.log("Fetched prescription:", prescription);
+                setData(prescription);
+            } catch (error) {
+                console.error("Error fetching prescription:", error);
+            }
         }
 
         provider && fetchData();
     }, [prescriptionId]);
-    
 
-   
-   
     return (
         <div className='PatientBox'> 
-        {data === null ? (  <div>Loading...</div> ) : ( <div className='SmallerBox'>
-            
-              <h2>Prescription Details</h2>
-  
-                <div className='DetailsBox'> 
-                   <div className='Details'>
-                      <strong>Doctor:</strong> {data.doctorUsername}
+            {data === null ? (
+                <div>Loading...</div>
+            ) : (
+                <div className='SmallerBox'>
+                    <h2>Prescription Details</h2>
+                    <div className='DetailsBox'> 
+                        <div className='Details'>
+                            <strong>Doctor:</strong> {data.doctorUsername}
+                        </div>
+                        <div className='Details'>
+                            <strong>Patient:</strong> {data.patientUsername}
+                        </div>
+                        <div className='Details'>
+                            <strong>Medications:</strong> {data.medication}
+                        </div>
+                        <div className='Details'>
+                            <strong>Instructions:</strong> {data.instructions}
+                        </div>
+                        <div className='Details'>
+                            <strong>Paid Status:</strong> {data.paidStatus.toString()}
+                        </div>
+                        <div className='Details'>
+                            <strong>Reimbursement Status:</strong> {data.reimbursementStatus.toString()}
+                        </div>
                     </div>
-                     <div  className='Details'>
-                       <strong>Patient:</strong> {data.patientUsername}
-                    </div>
-                     <div  className='Details'>
-                       <strong>Medications:</strong> {data.medication}
-                    </div>
-                     <div  className='Details'>
-                      <strong>Instructions:</strong> {data.instructions}
-                      </div>
-                      <div  className='Details'>
-                        <strong>Paid Status:</strong> {data.paidStatus.toString()}
-                      </div>
-                      <div  className='Details'>
-                        <strong>reimbursement Status:</strong> {data.reimbursementStatus.toString()}
-                      </div>
-                    
-                    
-                    </div>
-            </div>
-             )}
+                </div>
+            )}
         </div>
     );
 }
